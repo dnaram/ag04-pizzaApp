@@ -1,14 +1,20 @@
 package com.agency04.sbss.pizza.service;
 
 import com.agency04.sbss.pizza.model.Pizza;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
-public class PizzeriaDeliveryService {
+@Component
+public class PizzaDeliveryService {
 
+    @Autowired
+    @Qualifier("pizzeriaTinel")
     private PizzeriaService pizzeriaService;
 
-    public PizzeriaDeliveryService() {}
+    public PizzaDeliveryService() {}
 
-    public PizzeriaDeliveryService(PizzeriaService pizzeriaService) {
+    public PizzaDeliveryService(PizzeriaService pizzeriaService) {
         this.pizzeriaService = pizzeriaService;
     }
 

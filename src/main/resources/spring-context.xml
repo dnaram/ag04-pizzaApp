@@ -7,27 +7,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:component-scan base-package="com.agency04.sbss.pizza"/>
     <context:property-placeholder location="classpath:application.properties"/>
-
-    <bean id="pizzeriaAlfa"
-        class="com.agency04.sbss.pizza.service.PizzeriaAlfa">
-
-        <property name="name" value="Alfa"/>
-        <property name="address" value="Vela Luka, Obala 2"/>
-    </bean>
-
-    <bean id="pizzeriaTinel"
-          class="com.agency04.sbss.pizza.service.PizzeriaTinel">
-
-        <property name="name" value="${name}"/>
-        <property name="address" value="${address}"/>
-    </bean>
-
-    <bean id="pizzaDeliveryService"
-        class="com.agency04.sbss.pizza.service.PizzeriaDeliveryService">
-
-        <constructor-arg ref="pizzeriaAlfa"/> <!-- for testing purposes, gets overridden by the next line -->
-        <property name="pizzeriaService" ref="pizzeriaTinel"/>
-    </bean>
 
 </beans>
