@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class PizzaDeliveryService {
 
     @Autowired
-    @Qualifier("pizzeriaTinel")
+    @Qualifier("pizzeriaAlfa")
     private PizzeriaService pizzeriaService;
 
     public PizzaDeliveryService() {}
