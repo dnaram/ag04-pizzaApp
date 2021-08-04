@@ -14,6 +14,7 @@ public class PizzaApp {
         PizzaDeliveryService pds = context.getBean("pizzaDeliveryService", PizzaDeliveryService.class);
         System.out.println(pds.orderPizza(new Carbonara()));
         context.close();
+
     }
 
 }
