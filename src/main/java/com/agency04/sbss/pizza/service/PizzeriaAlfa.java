@@ -9,6 +9,9 @@ import javax.annotation.PreDestroy;
 @Component
 public class PizzeriaAlfa implements PizzeriaService {
 
+    private String name;
+    private String address;
+
     @PostConstruct
     public void postConstruct() {
         System.out.println("PizzeriaAlfa::postConstruct");
@@ -20,9 +23,6 @@ public class PizzeriaAlfa implements PizzeriaService {
     public void preDestroy() {
         System.out.println("PizzeriaAlfa::preDestroy");
     }
-
-    private String name;
-    private String address;
 
     public PizzeriaAlfa() {}
 

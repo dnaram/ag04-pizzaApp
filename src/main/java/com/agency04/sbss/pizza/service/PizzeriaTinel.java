@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @Scope("prototype")
 public class PizzeriaTinel implements PizzeriaService {
 
-    @Value("${name}")
+    @Value("${tinel.name}")
     private String name;
 
-    @Value("${address}")
+    @Value("${tinel.address}")
     private String address;
 
     public PizzeriaTinel() {}
