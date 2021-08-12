@@ -45,10 +45,4 @@ public class PizzeriaTinel implements PizzeriaService {
         System.out.printf("Making %s in %s...\n", pizza.getName(), this);
     }
 
-//    @Override
-//    public String toString() {
-//        return "Tinel: " +
-//                "name='" + name + '\'' +
-//                ", address='" + address + '\'';
-//    }
 }

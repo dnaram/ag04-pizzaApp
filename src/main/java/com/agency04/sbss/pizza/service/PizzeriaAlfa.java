@@ -14,14 +14,16 @@ public class PizzeriaAlfa implements PizzeriaService {
 
     @PostConstruct
     public void postConstruct() {
-        System.out.println("PizzeriaAlfa::postConstruct");
         this.name = "Alfa";
         this.address = "Vela Luka, Obala 2";
+        System.out.printf("Name: %s, Address: %s\n", name, address);
     }
 
     @PreDestroy
     public void preDestroy() {
-        System.out.println("PizzeriaAlfa::preDestroy");
+        name = "";
+        address = "";
+        System.out.printf("Name: %s, Address: %s\n", name, address);
     }
 
     public PizzeriaAlfa() {}
@@ -54,10 +56,4 @@ public class PizzeriaAlfa implements PizzeriaService {
         System.out.printf("Making pizza %s in %s...\n", pizza.getName(), getName());
     }
 
-//    @Override
-//    public String toString() {
-//        return "Alfa: " +
-//                "name='" + name + '\'' +
-//                ", address='" + address + '\'';
-//    }
 }
