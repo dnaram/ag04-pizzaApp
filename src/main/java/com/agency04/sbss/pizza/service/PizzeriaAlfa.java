@@ -1,13 +1,32 @@
 package com.agency04.sbss.pizza.service;
 
 import com.agency04.sbss.pizza.model.Pizza;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
+@Primary
 public class PizzeriaAlfa implements PizzeriaService {
 
     private String name;
     private String address;
+
+    @PostConstruct
+    public void postConstruct() {
+        this.name = "Alfa";
+        this.address = "Vela Luka, Obala 2";
+        System.out.printf("Name: %s, Address: %s\n", name, address);
+    }
+
+    @PreDestroy
+    public void preDestroy() {
+        name = "";
+        address = "";
+        System.out.printf("Name: %s, Address: %s\n", name, address);
+    }
 
     public PizzeriaAlfa() {}
 
@@ -38,4 +57,5 @@ public class PizzeriaAlfa implements PizzeriaService {
     public void makePizza(Pizza pizza) {
         System.out.printf("Making pizza %s in %s...\n", pizza.getName(), getName());
     }
+
 }
