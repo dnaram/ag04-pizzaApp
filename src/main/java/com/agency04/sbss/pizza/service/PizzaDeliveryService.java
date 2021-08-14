@@ -1,9 +1,12 @@
 package com.agency04.sbss.pizza.service;
 
 import com.agency04.sbss.pizza.model.Pizza;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 
 public class PizzaDeliveryService {
 
+    @Autowired
     private PizzeriaService pizzeriaService;
 
     public PizzaDeliveryService() {}
