@@ -1,16 +1,11 @@
 package com.agency04.sbss.pizza.model;
 
-public class Margherita implements Pizza {
-    @Override
-    public String getName() {
-        return "Margherita";
-    }
+public class Margherita extends Pizza {
 
-    @Override
-    public PizzaIngredient[] getIngredients() {
-        return new PizzaIngredient[]{PizzaIngredient.TOMATO_SAUCE,
+    public Margherita() {
+        super("Margherita", new PizzaIngredient[]{PizzaIngredient.TOMATO_SAUCE,
                 PizzaIngredient.MOZZARELLA,
                 PizzaIngredient.OREGANO
-        };
+        });
     }
 }
