@@ -2,20 +2,22 @@ package com.agency04.sbss.pizza.model;
 
 public class OrderItem {
 
-    private MenuItem menuItem;
+    private String name;
     private int quantity;
+    private Size size;
 
-    public OrderItem(MenuItem menuItem, int quantity) {
-        this.menuItem = menuItem;
+    public OrderItem(String name, int quantity, Size size) {
+        this.name = name;
         this.quantity = quantity;
+        this.size = size;
     }
 
-    public MenuItem getMenuItem() {
-        return menuItem;
+    public String getName() {
+        return name;
     }
 
-    public void setMenuItem(MenuItem menuItem) {
-        this.menuItem = menuItem;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getQuantity() {
@@ -24,5 +26,13 @@ public class OrderItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
     }
 }

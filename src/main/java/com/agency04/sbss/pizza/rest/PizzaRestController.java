@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -58,46 +60,27 @@ public class PizzaRestController {
     }
 
     @PostMapping("/delivery/order")
-    public void orderDelivery(@RequestBody DeliveryOrderForm deliveryOrderForm) {
+    public ResponseEntity orderDelivery(@RequestBody DeliveryOrderForm deliveryOrderForm) {
 
-        System.out.println(deliveryOrderForm);
+        Set<String> availablePizzas = new HashSet<>();
+        for (MenuItem menuItem : pizzaDeliveryService.getPizzeriaService().getMenu()) {
+               availablePizzas.add(menuItem.getPizza().getName());
+        }
 
-    }
+        for (OrderItem orderItem : deliveryOrderForm.getOrderDetails()) {
+            if (!availablePizzas.contains(orderItem.getName())) {
+                throw new PizzaNotFoundException(String.format("Pizza ordered: %s is not available in pizzeria %s.",
+                        orderItem.getName(), pizzaDeliveryService.getPizzeriaService().getName()));
+            }
+        }
 
-    @PostMapping("/request")
-    public ResponseEntity postController(@RequestBody LoginForm loginForm) {
-
-        System.out.println(loginForm.getUsername());
-        System.out.println(loginForm.getPassword());
-
+        pizzaDeliveryService.addOrder(deliveryOrderForm);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-
-    // TODO: 16. 08. 2021. izbrisati kad zavrsis
-    @GetMapping("order")
-    public DeliveryOrderForm getOrder() {
-        MenuItem item1 = new MenuItem(Size.SMALL, new Carbonara());
-        MenuItem item2 = new MenuItem(Size.REGULAR, new Romana());
-        MenuItem item3 = new MenuItem(Size.LARGE, new Margherita());
-
-        List<OrderItem> orderItems = new ArrayList<>();
-
-        OrderItem orderItem1 = new OrderItem(item1, 1);
-        OrderItem orderItem2 = new OrderItem(item2, 2);
-        OrderItem orderItem3 = new OrderItem(item3, 3);
-
-        orderItems.add(orderItem1);
-        orderItems.add(orderItem2);
-        orderItems.add(orderItem3);
-
-        DeliveryOrderForm dof = new DeliveryOrderForm("user1", orderItems);
-        return dof;
-    }
-
-    @GetMapping("/login")
-    public LoginForm getLogin() {
-        return new LoginForm("username", "password");
+    @GetMapping("/delivery/list")
+    public List<DeliveryOrderForm> getOrders() {
+        return pizzaDeliveryService.getOrders();
     }
 
 }
