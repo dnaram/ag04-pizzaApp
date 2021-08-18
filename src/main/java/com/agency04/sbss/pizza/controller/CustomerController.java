@@ -1,36 +1,47 @@
 package com.agency04.sbss.pizza.controller;
 
-import com.agency04.sbss.pizza.entity.Customer;
-import com.agency04.sbss.pizza.service.PizzaDeliveryService;
+import com.agency04.sbss.pizza.model.Customer;
+import com.agency04.sbss.pizza.model.dto.CustomerForm;
+import com.agency04.sbss.pizza.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
 public class CustomerController {
-    
+
     @Autowired
-    private PizzaDeliveryService pizzaDeliveryService;
-    
+    private CustomerService customerService;
+
     @GetMapping("/customer/{username}")
-    private Customer getCustomer(@PathVariable("username") String username) {
-        return pizzaDeliveryService.getCustomerByUsername();
+    public Customer getCustomer(@PathVariable String username) {
+
+        return customerService.getCustomerByUsername(username);
     }
-    
-    @DeleteMapping("/customer/{username}")
-    private void deleteCustomer(@PathVariable("username") String username) {
-        pizzaDeliveryService.delete(username);
-    }
-    
+
     @PostMapping("/customer")
-    private int saveCustomer(@RequestBody Customer customer) {
-        pizzaDeliveryService.saveOrUpdate(customer);
-        return customer.getId();
+    public Customer postCustomer(@RequestBody CustomerForm customerForm) {
+        return customerService.saveCustomer(customerForm);
     }
-    
+
     @PutMapping("/customer")
-    private void addCustomer(@RequestBody Customer customer) {
-        // TODO: 18. 08. 2021. add put functionality 
+    public Customer putCustomer(@RequestBody CustomerForm customerForm) {
+
+        Customer customer = customerService.getCustomerByUsername(customerForm.getUsername());
+        customerService.update(customer, customerForm);
+
+        return customer;
     }
-    
+
+    @DeleteMapping("customer/{username}")
+    public ResponseEntity deleteCustomer(@PathVariable String username) {
+        Customer customer = customerService.getCustomerByUsername(username);
+        customerService.delete(customer.getUsername());
+
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 }

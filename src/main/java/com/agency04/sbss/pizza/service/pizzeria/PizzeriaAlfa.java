@@ -1,7 +1,7 @@
-package com.agency04.sbss.pizza.service;
+package com.agency04.sbss.pizza.service.pizzeria;
 
-import com.agency04.sbss.pizza.model.MenuItem;
-import com.agency04.sbss.pizza.model.Pizza;
+import com.agency04.sbss.pizza.model.dto.MenuItem;
+import com.agency04.sbss.pizza.model.pizza.Pizza;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 @Component
-@Primary
 public class PizzeriaAlfa implements PizzeriaService {
 
     private String name;

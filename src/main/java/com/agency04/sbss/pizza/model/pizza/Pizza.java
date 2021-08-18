@@ -1,4 +1,4 @@
-package com.agency04.sbss.pizza.model;
+package com.agency04.sbss.pizza.model.pizza;
 
 public interface Pizza {
 

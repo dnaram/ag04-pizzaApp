@@ -1,4 +1,6 @@
-package com.agency04.sbss.pizza.model;
+package com.agency04.sbss.pizza.model.dto;
+
+import com.agency04.sbss.pizza.model.pizza.Pizza;
 
 public class MenuItem {
 

@@ -1,19 +1,36 @@
 package com.agency04.sbss.pizza.model;
 
-import java.util.Objects;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table
 public class Customer {
 
-    private int id;
+    @Id
+    @Column
     private String username;
-    private boolean active;
-    private int orders;
 
-    public Customer(int id, String username, boolean active, int orders) {
-        this.id = id;
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "customerDetails_id")
+    private CustomerDetails customerDetails;
+
+    @OneToMany(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Delivery> deliveries = new ArrayList<>();
+
+    public Customer() {}
+
+    public Customer(String username) {
         this.username = username;
-        this.active = active;
-        this.orders = orders;
+    }
+
+    public void setCustomerDetails(CustomerDetails customerDetails) {
+        this.customerDetails = customerDetails;
     }
 
     public String getUsername() {
@@ -24,28 +41,15 @@ public class Customer {
         this.username = username;
     }
 
-    public boolean isActive() {
-        return active;
+    public CustomerDetails getCustomerDetails() {
+        return customerDetails;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public List<Delivery> getDeliveries() {
+        return deliveries;
     }
 
-    public int getOrders() {
-        return orders;
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
     }
-
-    public void setOrders(int orders) {
-        this.orders = orders;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 }

@@ -1,4 +1,4 @@
-package com.agency04.sbss.pizza.rest;
+package com.agency04.sbss.pizza.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class PizzaRestExceptionHandler {
 
-    public ResponseEntity<PizzaErrorResponse> handleException(PizzaNotFoundException ex) {
+    public ResponseEntity<PizzaErrorResponse> handleException(EntityNotFoundException ex) {
 
         PizzaErrorResponse error = new PizzaErrorResponse();
 

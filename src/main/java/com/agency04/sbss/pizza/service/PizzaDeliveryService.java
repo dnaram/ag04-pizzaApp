@@ -1,14 +1,24 @@
 package com.agency04.sbss.pizza.service;
 
-import com.agency04.sbss.pizza.model.DeliveryOrderForm;
-import com.agency04.sbss.pizza.model.Pizza;
+import com.agency04.sbss.pizza.model.dto.DeliveryOrderForm;
+import com.agency04.sbss.pizza.model.dto.MenuItem;
+import com.agency04.sbss.pizza.model.dto.OrderItem;
+import com.agency04.sbss.pizza.model.pizza.Pizza;
+import com.agency04.sbss.pizza.controller.EntityNotFoundException;
+import com.agency04.sbss.pizza.service.pizzeria.PizzeriaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@Service
 public class PizzaDeliveryService {
 
+    @Autowired
     private PizzeriaService pizzeriaService;
 
     private List<DeliveryOrderForm> orders;
@@ -43,5 +53,19 @@ public class PizzaDeliveryService {
 
     public List<DeliveryOrderForm> getOrders() {
         return orders;
+    }
+
+    public void checkAvailablePizzas(DeliveryOrderForm deliveryOrderForm) {
+        Set<String> availablePizzas = new HashSet<>();
+        for (MenuItem menuItem : getPizzeriaService().getMenu()) {
+            availablePizzas.add(menuItem.getPizza().getName());
+        }
+
+        for (OrderItem orderItem : deliveryOrderForm.getOrderDetails()) {
+            if (!availablePizzas.contains(orderItem.getName())) {
+                throw new EntityNotFoundException(String.format("Pizza ordered: %s is not available in pizzeria %s.",
+                        orderItem.getName(), getPizzeriaService().getName()));
+            }
+        }
     }
 }
