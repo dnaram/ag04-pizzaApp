@@ -4,9 +4,9 @@ public class Margherita extends Pizza {
 
     public Margherita() {
         setName("Margherita");
-        setIngredients(new PizzaIngredient[]{PizzaIngredient.TOMATO_SAUCE,
-                PizzaIngredient.MOZZARELLA,
-                PizzaIngredient.OREGANO
-        });
+//        setIngredients(new PizzaIngredient[]{PizzaIngredient.TOMATO_SAUCE,
+//                PizzaIngredient.MOZZARELLA,
+//                PizzaIngredient.OREGANO
+//        });
     }
 }

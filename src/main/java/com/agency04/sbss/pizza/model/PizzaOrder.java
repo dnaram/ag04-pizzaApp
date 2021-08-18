@@ -1,6 +1,7 @@
 package com.agency04.sbss.pizza.model;
 
 import com.agency04.sbss.pizza.model.dto.Size;
+import com.agency04.sbss.pizza.model.pizza.Pizza;
 
 import javax.persistence.*;
 
@@ -17,6 +18,10 @@ public class PizzaOrder {
 
     @Column
     private Size size;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pizza_id", referencedColumnName = "id")
+    private Pizza pizza;
 
     public PizzaOrder() {}
 

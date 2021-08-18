@@ -5,8 +5,11 @@ import com.agency04.sbss.pizza.model.dto.MenuItem;
 import com.agency04.sbss.pizza.model.dto.OrderItem;
 import com.agency04.sbss.pizza.model.pizza.Pizza;
 import com.agency04.sbss.pizza.exception.EntityNotFoundException;
+import com.agency04.sbss.pizza.repository.DeliveryRepository;
+import com.agency04.sbss.pizza.repository.PizzaRepository;
 import com.agency04.sbss.pizza.service.pizzeria.PizzeriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -21,12 +24,11 @@ public class PizzaDeliveryService {
     @Autowired
     private PizzeriaService pizzeriaService;
 
-    private List<DeliveryOrderForm> orders;
+    @Autowired
+    private DeliveryRepository deliveryRepository;
 
-    @PostConstruct
-    private void initialize() {
-        orders = new ArrayList<>();
-    }
+    @Autowired
+    private PizzaRepository pizzaRepository;
 
     public PizzaDeliveryService() {}
 
@@ -47,13 +49,11 @@ public class PizzaDeliveryService {
         return String.format("Pizza ordered: %s\nPizzeria: %s", pizza.getName(), pizzeriaService.getName());
     }
 
-    public void addOrder(DeliveryOrderForm order) {
-        orders.add(order);
+    public void addOrder(DeliveryOrderForm deliveryOrderForm) {
+
+        deliveryRepository.save();
     }
 
-    public List<DeliveryOrderForm> getOrders() {
-        return orders;
-    }
 
     public void checkAvailablePizzas(DeliveryOrderForm deliveryOrderForm) {
         Set<String> availablePizzas = new HashSet<>();

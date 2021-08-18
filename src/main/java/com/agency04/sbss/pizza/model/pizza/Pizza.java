@@ -1,6 +1,11 @@
 package com.agency04.sbss.pizza.model.pizza;
 
+import com.agency04.sbss.pizza.model.PizzaOrder;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -13,11 +18,16 @@ public class Pizza {
     @Column
     private String name;
 
-    private PizzaIngredient[] ingredients;
+    @Column
+    @Type(type = "com.agency04.sbss.pizza.model.pizza.Ingredient")
+    private Ingredient[] ingredients;
+
+    @OneToMany(mappedBy = "pizza")
+    private List<PizzaOrder> orders = new ArrayList<>();
 
     public Pizza() {}
 
-    public Pizza(String name, PizzaIngredient[] ingredients) {
+    public Pizza(String name, Ingredient[] ingredients) {
         this.name = name;
         this.ingredients = ingredients;
     }
@@ -30,11 +40,11 @@ public class Pizza {
         this.name = name;
     }
 
-    public PizzaIngredient[] getIngredients() {
+    public Ingredient[] getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(PizzaIngredient[] ingredients) {
+    public void setIngredients(Ingredient[] ingredients) {
         this.ingredients = ingredients;
     }
 }
