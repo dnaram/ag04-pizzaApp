@@ -3,7 +3,6 @@ package com.agency04.sbss.pizza.service;
 import com.agency04.sbss.pizza.model.MenuItem;
 import com.agency04.sbss.pizza.model.Pizza;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

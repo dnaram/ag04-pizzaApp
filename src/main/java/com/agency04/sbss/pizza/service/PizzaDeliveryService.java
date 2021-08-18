@@ -1,11 +1,16 @@
 package com.agency04.sbss.pizza.service;
 
 import com.agency04.sbss.pizza.model.DeliveryOrderForm;
+import com.agency04.sbss.pizza.model.MenuItem;
+import com.agency04.sbss.pizza.model.OrderItem;
 import com.agency04.sbss.pizza.model.Pizza;
+import com.agency04.sbss.pizza.rest.EntityNotFoundException;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class PizzaDeliveryService {
 
@@ -43,5 +48,19 @@ public class PizzaDeliveryService {
 
     public List<DeliveryOrderForm> getOrders() {
         return orders;
+    }
+
+    public void checkAvailablePizzas(DeliveryOrderForm deliveryOrderForm) {
+        Set<String> availablePizzas = new HashSet<>();
+        for (MenuItem menuItem : getPizzeriaService().getMenu()) {
+            availablePizzas.add(menuItem.getPizza().getName());
+        }
+
+        for (OrderItem orderItem : deliveryOrderForm.getOrderDetails()) {
+            if (!availablePizzas.contains(orderItem.getName())) {
+                throw new EntityNotFoundException(String.format("Pizza ordered: %s is not available in pizzeria %s.",
+                        orderItem.getName(), getPizzeriaService().getName()));
+            }
+        }
     }
 }
