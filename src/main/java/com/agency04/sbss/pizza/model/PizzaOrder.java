@@ -30,6 +30,12 @@ public class PizzaOrder {
         this.size = size;
     }
 
+    public PizzaOrder(String quantity, Size size, Pizza pizza) {
+        this.quantity = quantity;
+        this.size = size;
+        this.pizza = pizza;
+    }
+
     public Long getId() {
         return id;
     }

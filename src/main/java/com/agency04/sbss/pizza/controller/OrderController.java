@@ -1,5 +1,6 @@
 package com.agency04.sbss.pizza.controller;
 
+import com.agency04.sbss.pizza.model.PizzaOrder;
 import com.agency04.sbss.pizza.model.dto.DeliveryOrderForm;
 import com.agency04.sbss.pizza.service.PizzaDeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class OrderController {
     }
 
     @GetMapping("/list")
-    public List<DeliveryOrderForm> getOrders() {
+    public List<PizzaOrder> getOrders() {
         return pizzaDeliveryService.getOrders();
     }
 }

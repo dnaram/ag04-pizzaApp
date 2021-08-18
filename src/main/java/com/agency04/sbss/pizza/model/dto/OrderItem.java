@@ -3,10 +3,10 @@ package com.agency04.sbss.pizza.model.dto;
 public class OrderItem {
 
     private String name;
-    private int quantity;
+    private String quantity;
     private Size size;
 
-    public OrderItem(String name, int quantity, Size size) {
+    public OrderItem(String name, String quantity, Size size) {
         this.name = name;
         this.quantity = quantity;
         this.size = size;
@@ -20,11 +20,11 @@ public class OrderItem {
         this.name = name;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
