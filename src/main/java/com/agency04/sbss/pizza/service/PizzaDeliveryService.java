@@ -4,7 +4,7 @@ import com.agency04.sbss.pizza.model.DeliveryOrderForm;
 import com.agency04.sbss.pizza.model.MenuItem;
 import com.agency04.sbss.pizza.model.OrderItem;
 import com.agency04.sbss.pizza.model.Pizza;
-import com.agency04.sbss.pizza.controller.EntityNotFoundException;
+import com.agency04.sbss.pizza.exception.EntityNotFoundException;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;

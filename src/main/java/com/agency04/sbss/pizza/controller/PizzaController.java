@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/pizzeria")
 public class PizzaController {
 
     @Autowired
     private PizzaDeliveryService pizzaDeliveryService;
 
-    @GetMapping("/pizzeria")
+    @GetMapping("/")
     public PizzeriaService getPizzeria() {
 
         return pizzaDeliveryService.getPizzeriaService();
     }
 
-    @GetMapping("/pizzeria/menu")
+    @GetMapping("/menu")
     public MenuItem[] getMenu() {
 
         return pizzaDeliveryService.getPizzeriaService().getMenu();

@@ -1,4 +1,4 @@
-package com.agency04.sbss.pizza.controller;
+package com.agency04.sbss.pizza.exception;
 
 public class PizzaErrorResponse {
 

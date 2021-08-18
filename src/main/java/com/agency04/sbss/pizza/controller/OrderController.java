@@ -17,7 +17,8 @@ public class OrderController {
     private PizzaDeliveryService pizzaDeliveryService;
 
     @PostMapping("/delivery/order")
-    public ResponseEntity orderDelivery(@RequestBody DeliveryOrderForm deliveryOrderForm) {
+    public ResponseEntity<HttpStatus> placeOrder(@RequestBody DeliveryOrderForm deliveryOrderForm) {
+
 
         pizzaDeliveryService.checkAvailablePizzas(deliveryOrderForm);
 
