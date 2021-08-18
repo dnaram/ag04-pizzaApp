@@ -4,7 +4,7 @@ import com.agency04.sbss.pizza.model.dto.DeliveryOrderForm;
 import com.agency04.sbss.pizza.model.dto.MenuItem;
 import com.agency04.sbss.pizza.model.dto.OrderItem;
 import com.agency04.sbss.pizza.model.pizza.Pizza;
-import com.agency04.sbss.pizza.controller.EntityNotFoundException;
+import com.agency04.sbss.pizza.exception.EntityNotFoundException;
 import com.agency04.sbss.pizza.service.pizzeria.PizzeriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

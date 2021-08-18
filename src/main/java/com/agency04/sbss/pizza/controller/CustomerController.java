@@ -11,24 +11,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("/customer/{username}")
+    @GetMapping("{username}")
     public Customer getCustomer(@PathVariable String username) {
 
         return customerService.getCustomerByUsername(username);
     }
 
-    @PostMapping("/customer")
+    @PostMapping("")
     public Customer postCustomer(@RequestBody CustomerForm customerForm) {
         return customerService.saveCustomer(customerForm);
     }
 
-    @PutMapping("/customer")
+    @PutMapping("")
     public Customer putCustomer(@RequestBody CustomerForm customerForm) {
 
         Customer customer = customerService.getCustomerByUsername(customerForm.getUsername());

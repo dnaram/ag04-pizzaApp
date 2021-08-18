@@ -1,6 +1,6 @@
 package com.agency04.sbss.pizza.service;
 
-import com.agency04.sbss.pizza.controller.EntityNotFoundException;
+import com.agency04.sbss.pizza.exception.EntityNotFoundException;
 import com.agency04.sbss.pizza.model.Customer;
 import com.agency04.sbss.pizza.model.CustomerDetails;
 import com.agency04.sbss.pizza.model.dto.CustomerForm;
@@ -8,8 +8,6 @@ import com.agency04.sbss.pizza.repository.CustomerDetailsRepository;
 import com.agency04.sbss.pizza.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class CustomerService {
