@@ -1,4 +1,4 @@
-package com.agency04.sbss.pizza.rest;
+package com.agency04.sbss.pizza.controller;
 
 import com.agency04.sbss.pizza.model.Customer;
 import com.agency04.sbss.pizza.repo.Repository;

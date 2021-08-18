@@ -1,4 +1,4 @@
-package com.agency04.sbss.pizza.rest;
+package com.agency04.sbss.pizza.controller;
 
 public class EntityNotFoundException extends RuntimeException {
 
