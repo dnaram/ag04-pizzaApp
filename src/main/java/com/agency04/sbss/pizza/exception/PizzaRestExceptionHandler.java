@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class PizzaRestExceptionHandler {
 
+    @ExceptionHandler
     public ResponseEntity<PizzaErrorResponse> handleException(EntityNotFoundException ex) {
 
         PizzaErrorResponse error = new PizzaErrorResponse();

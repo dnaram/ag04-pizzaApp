@@ -9,10 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
-    @GetMapping("/customer/{username}")
+    @GetMapping("/{username}")
     public Customer getCustomer(@PathVariable String username) {
 
         Customer customer =  Repository.getInstance().getCustomerByUsername(username);
@@ -23,12 +23,12 @@ public class CustomerController {
         return customer;
     }
 
-    @PostMapping("/customer")
+    @PostMapping("")
     public Customer postCustomer(@RequestBody CustomerDTO customerDTO) {
         return Repository.getInstance().addCustomer(customerDTO.getUsername(), false, customerDTO.getOrders());
     }
 
-    @PutMapping("/customer")
+    @PutMapping("")
     public Customer putCustomer(@RequestBody CustomerDTO customerDTO) {
         Customer customer = Repository.getInstance().getCustomerByUsername(customerDTO.getUsername());
         if (customer == null) {
@@ -39,7 +39,7 @@ public class CustomerController {
         return customer;
     }
 
-    @DeleteMapping("customer/{username}")
+    @DeleteMapping("/{username}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String username) {
         Customer customer = Repository.getInstance().removeCustomer(username);
         if (customer == null) {

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/delivery")
 public class OrderController {
 
     @Autowired
     private PizzaDeliveryService pizzaDeliveryService;
 
-    @PostMapping("/delivery/order")
+    @PostMapping("/order")
     public ResponseEntity<HttpStatus> placeOrder(@RequestBody DeliveryOrderForm deliveryOrderForm) {
 
 
@@ -26,7 +26,7 @@ public class OrderController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @GetMapping("/delivery/list")
+    @GetMapping("/list")
     public List<DeliveryOrderForm> getOrders() {
         return pizzaDeliveryService.getOrders();
     }
