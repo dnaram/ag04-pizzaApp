@@ -25,7 +25,7 @@ public class CustomerController {
 
     @PostMapping("/customer")
     public Customer postCustomer(@RequestBody CustomerDTO customerDTO) {
-        return Repository.getInstance().addCustomer(customerDTO.getUsername(), false, 0);
+        return Repository.getInstance().addCustomer(customerDTO.getUsername(), false, customerDTO.getOrders());
     }
 
     @PutMapping("/customer")
