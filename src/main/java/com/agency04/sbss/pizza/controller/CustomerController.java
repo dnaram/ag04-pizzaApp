@@ -1,9 +1,7 @@
 package com.agency04.sbss.pizza.controller;
 
-import com.agency04.sbss.pizza.exception.EntityNotFoundException;
 import com.agency04.sbss.pizza.model.Customer;
 import com.agency04.sbss.pizza.model.CustomerDTO;
-import com.agency04.sbss.pizza.repo.Repository;
 import com.agency04.sbss.pizza.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,8 +36,8 @@ public class CustomerController {
 
     @DeleteMapping("/{username}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String username) {
-        Customer customer = customerService.getCustomerByUsername(username);
 
+        customerService.removeCustomer(username);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }

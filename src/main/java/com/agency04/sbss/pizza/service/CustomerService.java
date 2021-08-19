@@ -26,4 +26,13 @@ public class CustomerService {
 
         return Repository.getInstance().addCustomer(customerDTO.getUsername(), false, customerDTO.getOrders());
     }
+
+    public Customer removeCustomer(String username) {
+        Customer customer = Repository.getInstance().removeCustomer(username);
+        if (customer == null) {
+            throw new EntityNotFoundException("Can not find customer with username - " + username);
+        }
+
+        return customer;
+    }
 }
