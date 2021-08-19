@@ -31,12 +31,6 @@ public class PizzaDeliveryService {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private DeliveryRepository deliveryRepository;
-
-    @Autowired
-    private PizzaRepository pizzaRepository;
-
-    @Autowired
     private PizzaOrderRepository pizzaOrderRepository;
 
 
