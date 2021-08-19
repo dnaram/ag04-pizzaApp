@@ -19,6 +19,7 @@ public class PizzaOrder {
     private String quantity;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private Size size;
 
     @JsonBackReference
