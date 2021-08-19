@@ -25,15 +25,12 @@ public class CustomerController {
 
     @PostMapping("")
     public Customer postCustomer(@RequestBody CustomerDTO customerDTO) {
-        return Repository.getInstance().addCustomer(customerDTO.getUsername(), false, customerDTO.getOrders());
+        return customerService.addCustomer(customerDTO);
     }
 
     @PutMapping("")
     public Customer putCustomer(@RequestBody CustomerDTO customerDTO) {
-        Customer customer = Repository.getInstance().getCustomerByUsername(customerDTO.getUsername());
-        if (customer == null) {
-            throw new EntityNotFoundException("Can not find customer with username - " + customerDTO.getUsername());
-        }
+        Customer customer = customerService.getCustomerByUsername(customerDTO.getUsername());
 
         customer.setOrders(customerDTO.getOrders());
         return customer;
@@ -41,10 +38,7 @@ public class CustomerController {
 
     @DeleteMapping("/{username}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String username) {
-        Customer customer = Repository.getInstance().removeCustomer(username);
-        if (customer == null) {
-            throw new EntityNotFoundException("Can not find customer with username - " + username);
-        }
+        Customer customer = customerService.getCustomerByUsername(username);
 
         return ResponseEntity.ok(HttpStatus.OK);
     }
