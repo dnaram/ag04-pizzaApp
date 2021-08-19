@@ -1,6 +1,9 @@
 package com.agency04.sbss.pizza.model;
 
 public class Romana implements Pizza {
+
+    public Romana() {}
+
     @Override
     public String getName() {
         return "Romana";

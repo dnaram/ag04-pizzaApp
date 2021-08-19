@@ -1,11 +1,10 @@
 package com.agency04.sbss.pizza.service;
 
+import com.agency04.sbss.pizza.model.MenuItem;
 import com.agency04.sbss.pizza.model.Pizza;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 
-@Component
+
 public class PizzeriaNautica implements PizzeriaService {
 
     @Value("${nautica.name}")
@@ -13,6 +12,8 @@ public class PizzeriaNautica implements PizzeriaService {
 
     @Value("${nautica.address}")
     private String address;
+
+    private MenuItem[] menu;
 
     @Override
     public String getName() {
@@ -22,6 +23,16 @@ public class PizzeriaNautica implements PizzeriaService {
     @Override
     public String getAddress() {
         return address;
+    }
+
+    @Override
+    public void setMenu(MenuItem[] menu) {
+        this.menu = menu;
+    }
+
+    @Override
+    public MenuItem[] getMenu() {
+        return menu;
     }
 
     @Override

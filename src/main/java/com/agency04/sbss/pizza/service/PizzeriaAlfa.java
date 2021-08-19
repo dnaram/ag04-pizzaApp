@@ -1,5 +1,6 @@
 package com.agency04.sbss.pizza.service;
 
+import com.agency04.sbss.pizza.model.MenuItem;
 import com.agency04.sbss.pizza.model.Pizza;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,8 @@ public class PizzeriaAlfa implements PizzeriaService {
 
     private String name;
     private String address;
+
+    private MenuItem[] menu;
 
     @PostConstruct
     public void postConstruct() {
@@ -51,6 +54,14 @@ public class PizzeriaAlfa implements PizzeriaService {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public void setMenu(MenuItem[] menu) {
+        this.menu = menu;
+    }
+
+    public MenuItem[] getMenu() {
+        return menu;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.agency04.sbss.pizza.service;
 
+import com.agency04.sbss.pizza.model.MenuItem;
 import com.agency04.sbss.pizza.model.Pizza;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +15,8 @@ public class PizzeriaTinel implements PizzeriaService {
 
     @Value("${tinel.address}")
     private String address;
+
+    private MenuItem[] menu;
 
     public PizzeriaTinel() {}
 
@@ -33,6 +35,16 @@ public class PizzeriaTinel implements PizzeriaService {
         return address;
     }
 
+    @Override
+    public void setMenu(MenuItem[] menu) {
+        this.menu = menu;
+    }
+
+    @Override
+    public MenuItem[] getMenu() {
+        return menu;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -40,6 +52,8 @@ public class PizzeriaTinel implements PizzeriaService {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 
     @Override
     public void makePizza(Pizza pizza) {
