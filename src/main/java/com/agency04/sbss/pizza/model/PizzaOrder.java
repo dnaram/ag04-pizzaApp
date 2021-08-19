@@ -5,6 +5,7 @@ import com.agency04.sbss.pizza.model.pizza.Pizza;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -68,5 +69,18 @@ public class PizzaOrder {
 
     public void setPizza(Pizza pizza) {
         this.pizza = pizza;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PizzaOrder that = (PizzaOrder) o;
+        return Objects.equals(id, that.id) && Objects.equals(quantity, that.quantity) && size == that.size && Objects.equals(pizza, that.pizza);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, quantity, size, pizza);
     }
 }

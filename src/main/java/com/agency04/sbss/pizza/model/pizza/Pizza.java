@@ -6,7 +6,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -64,5 +66,20 @@ public class Pizza {
 
     public void setOrders(List<PizzaOrder> orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pizza pizza = (Pizza) o;
+        return Objects.equals(id, pizza.id) && Objects.equals(name, pizza.name) && Arrays.equals(ingredients, pizza.ingredients) && Objects.equals(orders, pizza.orders);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, name, orders);
+        result = 31 * result + Arrays.hashCode(ingredients);
+        return result;
     }
 }
