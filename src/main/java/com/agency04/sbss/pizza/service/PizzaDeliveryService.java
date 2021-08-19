@@ -17,10 +17,8 @@ import com.agency04.sbss.pizza.repository.PizzaOrderRepository;
 import com.agency04.sbss.pizza.repository.PizzaRepository;
 import com.agency04.sbss.pizza.service.pizzeria.PizzeriaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.*;
 
 @Service

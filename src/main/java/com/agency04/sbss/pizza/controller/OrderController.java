@@ -22,7 +22,7 @@ public class OrderController {
     private CustomerService customerService;
 
     @PostMapping("/order")
-    public ResponseEntity<HttpStatus> orderDelivery(@RequestBody DeliveryOrderForm deliveryOrderForm) {
+    public ResponseEntity<HttpStatus> placeOrder(@RequestBody DeliveryOrderForm deliveryOrderForm) {
 
         pizzaDeliveryService.checkAvailablePizzas(deliveryOrderForm);
 
