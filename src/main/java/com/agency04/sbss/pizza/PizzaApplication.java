@@ -5,6 +5,9 @@ import com.agency04.sbss.pizza.model.CustomerDetails;
 import com.agency04.sbss.pizza.model.Delivery;
 import com.agency04.sbss.pizza.model.PizzaOrder;
 import com.agency04.sbss.pizza.model.dto.Size;
+import com.agency04.sbss.pizza.model.pizza.Carbonara;
+import com.agency04.sbss.pizza.model.pizza.Margherita;
+import com.agency04.sbss.pizza.model.pizza.Romana;
 import com.agency04.sbss.pizza.repository.CustomerDetailsRepository;
 import com.agency04.sbss.pizza.repository.CustomerRepository;
 import com.agency04.sbss.pizza.repository.PizzaOrderRepository;
@@ -27,9 +30,9 @@ public class PizzaApplication {
         CustomerDetailsRepository customerDetailsRepository = configurableApplicationContext.getBean(CustomerDetailsRepository.class);
         PizzaOrderRepository pizzaOrderRepository = configurableApplicationContext.getBean(PizzaOrderRepository.class);
 
-        PizzaOrder order1 = new PizzaOrder("3", Size.LARGE);
-        PizzaOrder order2 = new PizzaOrder("2", Size.REGULAR);
-        PizzaOrder order3 = new PizzaOrder("1", Size.SMALL);
+        PizzaOrder order1 = new PizzaOrder("3", Size.LARGE, new Carbonara());
+        PizzaOrder order2 = new PizzaOrder("2", Size.REGULAR, new Margherita());
+        PizzaOrder order3 = new PizzaOrder("1", Size.SMALL, new Romana());
         List<PizzaOrder> orders = Arrays.asList(order1, order2, order3);
 
         CustomerDetails customerDetails = new CustomerDetails("John", "Doe", "555-333");

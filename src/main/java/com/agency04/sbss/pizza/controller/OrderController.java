@@ -2,6 +2,7 @@ package com.agency04.sbss.pizza.controller;
 
 import com.agency04.sbss.pizza.model.PizzaOrder;
 import com.agency04.sbss.pizza.model.dto.DeliveryOrderForm;
+import com.agency04.sbss.pizza.service.CustomerService;
 import com.agency04.sbss.pizza.service.PizzaDeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,9 @@ public class OrderController {
 
     @Autowired
     private PizzaDeliveryService pizzaDeliveryService;
+
+    @Autowired
+    private CustomerService customerService;
 
     @PostMapping("/order")
     public ResponseEntity<HttpStatus> orderDelivery(@RequestBody DeliveryOrderForm deliveryOrderForm) {

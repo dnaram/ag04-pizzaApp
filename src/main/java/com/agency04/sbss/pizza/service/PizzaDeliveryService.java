@@ -30,6 +30,9 @@ public class PizzaDeliveryService {
     private PizzeriaService pizzeriaService;
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private DeliveryRepository deliveryRepository;
 
     @Autowired
@@ -38,8 +41,6 @@ public class PizzaDeliveryService {
     @Autowired
     private PizzaOrderRepository pizzaOrderRepository;
 
-    @Autowired
-    private CustomerRepository customerRepository;
 
     public PizzaDeliveryService() {}
 

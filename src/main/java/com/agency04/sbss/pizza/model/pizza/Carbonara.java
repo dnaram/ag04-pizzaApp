@@ -4,11 +4,11 @@ public class Carbonara extends Pizza {
 
     public Carbonara() {
         setName("Carbonara");
-//        setIngredients(new PizzaIngredient[]{PizzaIngredient.TOMATO_SAUCE,
-//                PizzaIngredient.MOZZARELLA,
-//                PizzaIngredient.PARMESAN,
-//                PizzaIngredient.EGGS,
-//                PizzaIngredient.BACON
-//        });
+        setIngredients(new Ingredient[]{ Ingredient.TOMATO_SAUCE,
+                Ingredient.MOZZARELLA,
+                Ingredient.PARMESAN,
+                Ingredient.EGGS,
+                Ingredient.BACON
+        });
     }
 }

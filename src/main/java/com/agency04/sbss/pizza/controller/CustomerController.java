@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-
 @RestController
 @RequestMapping("/api/customer")
 public class CustomerController {
@@ -37,8 +35,8 @@ public class CustomerController {
         return customer;
     }
 
-    @DeleteMapping("customer/{username}")
-    public ResponseEntity deleteCustomer(@PathVariable String username) {
+    @DeleteMapping("/{username}")
+    public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String username) {
         Customer customer = customerService.getCustomerByUsername(username);
         customerService.delete(customer.getUsername());
 

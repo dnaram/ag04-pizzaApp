@@ -2,6 +2,7 @@ package com.agency04.sbss.pizza.model;
 
 import com.agency04.sbss.pizza.model.dto.Size;
 import com.agency04.sbss.pizza.model.pizza.Pizza;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -19,6 +20,7 @@ public class PizzaOrder {
     @Column
     private Size size;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pizza_id", referencedColumnName = "id")
     private Pizza pizza;
@@ -60,4 +62,11 @@ public class PizzaOrder {
         this.size = size;
     }
 
+    public Pizza getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
 }

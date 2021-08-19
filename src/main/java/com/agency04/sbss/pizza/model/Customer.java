@@ -1,5 +1,7 @@
 package com.agency04.sbss.pizza.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ public class Customer {
     @JoinColumn(name = "customerDetails_id")
     private CustomerDetails customerDetails;
 
+    @JsonManagedReference
     @OneToMany(
             mappedBy = "customer",
             cascade = CascadeType.ALL,

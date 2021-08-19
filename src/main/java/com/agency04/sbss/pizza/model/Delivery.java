@@ -1,5 +1,7 @@
 package com.agency04.sbss.pizza.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,6 +15,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "customer_username")
     private Customer customer;
@@ -62,5 +65,13 @@ public class Delivery {
 
     public void setSubmissionDate(Date submissionDate) {
         this.submissionDate = submissionDate;
+    }
+
+    public List<PizzaOrder> getPizzaOrders() {
+        return pizzaOrders;
+    }
+
+    public void setPizzaOrders(List<PizzaOrder> pizzaOrders) {
+        this.pizzaOrders = pizzaOrders;
     }
 }
