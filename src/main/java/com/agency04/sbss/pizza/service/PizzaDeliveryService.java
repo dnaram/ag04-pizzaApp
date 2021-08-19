@@ -1,5 +1,6 @@
 package com.agency04.sbss.pizza.service;
 
+import com.agency04.sbss.pizza.exception.EntityNotFoundException;
 import com.agency04.sbss.pizza.model.Customer;
 import com.agency04.sbss.pizza.model.Delivery;
 import com.agency04.sbss.pizza.model.PizzaOrder;
@@ -9,12 +10,9 @@ import com.agency04.sbss.pizza.model.dto.OrderItem;
 import com.agency04.sbss.pizza.model.pizza.Carbonara;
 import com.agency04.sbss.pizza.model.pizza.Margherita;
 import com.agency04.sbss.pizza.model.pizza.Pizza;
-import com.agency04.sbss.pizza.exception.EntityNotFoundException;
 import com.agency04.sbss.pizza.model.pizza.Romana;
 import com.agency04.sbss.pizza.repository.CustomerRepository;
-import com.agency04.sbss.pizza.repository.DeliveryRepository;
 import com.agency04.sbss.pizza.repository.PizzaOrderRepository;
-import com.agency04.sbss.pizza.repository.PizzaRepository;
 import com.agency04.sbss.pizza.service.pizzeria.PizzeriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

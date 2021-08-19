@@ -2,13 +2,9 @@ package com.agency04.sbss.pizza.model.pizza;
 
 import com.agency04.sbss.pizza.model.PizzaOrder;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Table
@@ -21,9 +17,10 @@ public class Pizza {
     @Column
     private String name;
 
-    @Column
-    @Type(type = "com.agency04.sbss.pizza.model.pizza.Ingredient")
-    private Ingredient[] ingredients;
+    @ElementCollection(targetClass = Ingredient.class)
+    @CollectionTable
+    @Enumerated(EnumType.STRING)
+    private Set<Ingredient> ingredients;
 
     @JsonManagedReference
     @OneToMany(mappedBy = "pizza")
@@ -31,7 +28,7 @@ public class Pizza {
 
     public Pizza() {}
 
-    public Pizza(String name, Ingredient[] ingredients) {
+    public Pizza(String name, Set<Ingredient> ingredients) {
         this.name = name;
         this.ingredients = ingredients;
     }
@@ -44,11 +41,11 @@ public class Pizza {
         this.name = name;
     }
 
-    public Ingredient[] getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Ingredient[] ingredients) {
+    public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -73,13 +70,11 @@ public class Pizza {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Pizza pizza = (Pizza) o;
-        return Objects.equals(id, pizza.id) && Objects.equals(name, pizza.name) && Arrays.equals(ingredients, pizza.ingredients) && Objects.equals(orders, pizza.orders);
+        return Objects.equals(id, pizza.id) && Objects.equals(name, pizza.name) && Objects.equals(ingredients, pizza.ingredients) && Objects.equals(orders, pizza.orders);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, name, orders);
-        result = 31 * result + Arrays.hashCode(ingredients);
-        return result;
+        return Objects.hash(id, name, ingredients, orders);
     }
 }

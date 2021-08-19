@@ -10,7 +10,6 @@ import com.agency04.sbss.pizza.model.pizza.Margherita;
 import com.agency04.sbss.pizza.model.pizza.Romana;
 import com.agency04.sbss.pizza.repository.CustomerDetailsRepository;
 import com.agency04.sbss.pizza.repository.CustomerRepository;
-import com.agency04.sbss.pizza.repository.PizzaOrderRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -28,7 +27,6 @@ public class PizzaApplication {
 
         CustomerRepository customerRepository = configurableApplicationContext.getBean(CustomerRepository.class);
         CustomerDetailsRepository customerDetailsRepository = configurableApplicationContext.getBean(CustomerDetailsRepository.class);
-        PizzaOrderRepository pizzaOrderRepository = configurableApplicationContext.getBean(PizzaOrderRepository.class);
 
         PizzaOrder order1 = new PizzaOrder("3", Size.LARGE, new Carbonara());
         PizzaOrder order2 = new PizzaOrder("2", Size.REGULAR, new Margherita());

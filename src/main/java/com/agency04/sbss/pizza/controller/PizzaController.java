@@ -13,7 +13,7 @@ public class PizzaController {
     @Autowired
     private PizzaDeliveryService pizzaDeliveryService;
 
-    @GetMapping("")
+    @GetMapping
     public PizzeriaService getPizzeria() {
 
         return pizzaDeliveryService.getPizzeriaService();

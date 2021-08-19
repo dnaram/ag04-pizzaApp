@@ -15,18 +15,18 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @GetMapping("{username}")
+    @GetMapping("/{username}")
     public Customer getCustomer(@PathVariable String username) {
 
         return customerService.getCustomerByUsername(username);
     }
 
-    @PostMapping("")
+    @PostMapping
     public Customer postCustomer(@RequestBody CustomerForm customerForm) {
         return customerService.saveCustomer(customerForm);
     }
 
-    @PutMapping("")
+    @PutMapping
     public Customer putCustomer(@RequestBody CustomerForm customerForm) {
 
         Customer customer = customerService.getCustomerByUsername(customerForm.getUsername());
