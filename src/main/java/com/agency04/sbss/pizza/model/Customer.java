@@ -1,19 +1,40 @@
 package com.agency04.sbss.pizza.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+@Entity
+@Table
 public class Customer {
 
-    private int id;
+    @Id
+    @Column
     private String username;
-    private boolean active;
-    private int orders;
 
-    public Customer(int id, String username, boolean active, int orders) {
-        this.id = id;
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "customerDetails_id")
+    private CustomerDetails customerDetails;
+
+    @JsonManagedReference
+    @OneToMany(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Delivery> deliveries = new ArrayList<>();
+
+    public Customer() {}
+
+    public Customer(String username) {
         this.username = username;
-        this.active = active;
-        this.orders = orders;
+    }
+
+    public void setCustomerDetails(CustomerDetails customerDetails) {
+        this.customerDetails = customerDetails;
     }
 
     public String getUsername() {
@@ -24,28 +45,28 @@ public class Customer {
         this.username = username;
     }
 
-    public boolean isActive() {
-        return active;
+    public CustomerDetails getCustomerDetails() {
+        return customerDetails;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public List<Delivery> getDeliveries() {
+        return deliveries;
     }
 
-    public int getOrders() {
-        return orders;
+    public void setDeliveries(List<Delivery> deliveries) {
+        this.deliveries = deliveries;
     }
 
-    public void setOrders(int orders) {
-        this.orders = orders;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(username, customer.username) && Objects.equals(customerDetails, customer.customerDetails) && Objects.equals(deliveries, customer.deliveries);
     }
 
-    public int getId() {
-        return id;
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, customerDetails, deliveries);
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 }

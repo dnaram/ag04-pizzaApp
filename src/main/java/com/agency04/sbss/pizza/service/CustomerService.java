@@ -2,37 +2,58 @@ package com.agency04.sbss.pizza.service;
 
 import com.agency04.sbss.pizza.exception.EntityNotFoundException;
 import com.agency04.sbss.pizza.model.Customer;
-import com.agency04.sbss.pizza.model.CustomerDTO;
-import com.agency04.sbss.pizza.repo.Repository;
+import com.agency04.sbss.pizza.model.CustomerDetails;
+import com.agency04.sbss.pizza.model.dto.CustomerForm;
+import com.agency04.sbss.pizza.repository.CustomerDetailsRepository;
+import com.agency04.sbss.pizza.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class CustomerService {
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private CustomerDetailsRepository customerDetailsRepository;
+
     public Customer getCustomerByUsername(String username) {
-        Customer customer =  Repository.getInstance().getCustomerByUsername(username);
-        if (customer == null) {
+        Optional<Customer> result = customerRepository.findById(username);
+        if (result.isEmpty()) {
             throw new EntityNotFoundException("Can not find customer with username - " + username);
         }
+
+        return result.get();
+    }
+
+    public Customer saveCustomer(CustomerForm customerForm) {
+        Optional<Customer> result = customerRepository.findById(customerForm.getUsername());
+        if (result.isPresent()) {
+            throw new EntityNotFoundException("Customer with given username already exists - " + customerForm.getUsername());
+        }
+
+        CustomerDetails customerDetails = new CustomerDetails(customerForm.getFirstname(), customerForm.getLastname(), customerForm.getPhone());
+        customerDetailsRepository.save(customerDetails);
+
+        Customer customer = new Customer(customerForm.getUsername());
+        customer.setCustomerDetails(customerDetails);
+        customerRepository.save(customer);
 
         return customer;
     }
 
-    public Customer addCustomer(CustomerDTO customerDTO) {
-        Customer customer =  Repository.getInstance().getCustomerByUsername(customerDTO.getUsername());
-        if (customer != null) {
-            throw new EntityNotFoundException("Customer with given username already exists - " + customerDTO.getUsername());
-        }
-
-        return Repository.getInstance().addCustomer(customerDTO.getUsername(), false, customerDTO.getOrders());
+    public void delete(String username) {
+        customerRepository.deleteById(username);
     }
 
-    public Customer removeCustomer(String username) {
-        Customer customer = Repository.getInstance().removeCustomer(username);
-        if (customer == null) {
-            throw new EntityNotFoundException("Can not find customer with username - " + username);
-        }
-
-        return customer;
+    public void update(Customer customer, CustomerForm customerForm) {
+        CustomerDetails cd = customer.getCustomerDetails();
+        cd.setFirstName(customerForm.getFirstname());
+        cd.setLastName(customerForm.getLastname());
+        cd.setPhone(customerForm.getPhone());
+        customerDetailsRepository.save(cd);
     }
 }

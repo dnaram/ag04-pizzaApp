@@ -1,7 +1,7 @@
-package com.agency04.sbss.pizza.service;
+package com.agency04.sbss.pizza.service.pizzeria;
 
-import com.agency04.sbss.pizza.model.MenuItem;
-import com.agency04.sbss.pizza.model.Pizza;
+import com.agency04.sbss.pizza.model.dto.MenuItem;
+import com.agency04.sbss.pizza.model.pizza.Pizza;
 
 public interface PizzeriaService {
 

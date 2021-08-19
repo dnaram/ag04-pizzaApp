@@ -1,6 +1,6 @@
-package com.agency04.sbss.pizza.model;
+package com.agency04.sbss.pizza.model.pizza;
 
-public enum PizzaIngredient {
+public enum Ingredient {
     TOMATO_SAUCE,
     MOZZARELLA,
     PARMESAN,
